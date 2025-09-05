@@ -9,7 +9,6 @@ import com.aod.aivoicechat.R
 import com.aod.aivoicechat.databinding.ActivityStartBinding
 import com.aod.aivoicechat.utils.ext.fadeIn
 import com.aod.aivoicechat.utils.ext.hideSystemUI
-import com.aod.aivoicechat.utils.ext.makeFullScreen
 import com.aod.aivoicechat.utils.ext.showDarkTextInStatusBar
 import com.aod.aivoicechat.utils.ext.slideVertical
 import com.aod.aivoicechat.utils.ext.startActivity
