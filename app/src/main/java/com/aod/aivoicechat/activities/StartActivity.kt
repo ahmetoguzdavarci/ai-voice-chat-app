@@ -3,8 +3,6 @@ package com.aod.aivoicechat.activities
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
-import androidx.appcompat.app.AppCompatActivity
-import androidx.databinding.DataBindingUtil
 import com.aod.aivoicechat.R
 import com.aod.aivoicechat.databinding.ActivityStartBinding
 import com.aod.aivoicechat.utils.ext.fadeIn
@@ -13,9 +11,7 @@ import com.aod.aivoicechat.utils.ext.showDarkTextInStatusBar
 import com.aod.aivoicechat.utils.ext.slideVertical
 import com.aod.aivoicechat.utils.ext.startActivity
 
-class StartActivity : AppCompatActivity() {
-
-    private lateinit var binding: ActivityStartBinding
+class StartActivity : BaseActivity<ActivityStartBinding>(layoutResId = R.layout.activity_start) {
 
     private val animHandler = Handler(Looper.getMainLooper())
 
@@ -23,8 +19,6 @@ class StartActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
-        binding = DataBindingUtil.setContentView(this, R.layout.activity_start)
 
         hideSystemUI()
         showDarkTextInStatusBar(false)

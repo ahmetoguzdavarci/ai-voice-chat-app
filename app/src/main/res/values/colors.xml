@@ -18,4 +18,7 @@
     <color name="splash_bg_color">#0859EB</color>
     <color name="main_bg_color">#E3F1FF</color>
 
+    <color name="box_ai_color">#EFEFEF</color>
+    <color name="box_human_color">#657DE8</color>
+
 </resources>

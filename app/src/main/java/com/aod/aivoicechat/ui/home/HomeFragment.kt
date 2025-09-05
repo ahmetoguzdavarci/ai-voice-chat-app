@@ -1,6 +1,8 @@
 package com.aod.aivoicechat.ui.home
 
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.view.View
 import com.aod.aivoicechat.R
 import com.aod.aivoicechat.databinding.FragmentHomeBinding
@@ -11,6 +13,16 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(layoutResId = R.layout.fr
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        //TODO
+        setItemClick()
+    }
+
+    private fun setItemClick() {
+        binding.apply {
+            btnMic.setOnClickListener {
+                isSpeaking = true
+                //TODO test
+                Handler(Looper.getMainLooper()).postDelayed({ isSpeaking = false }, 1_000L)
+            }
+        }
     }
 }
