@@ -10,14 +10,18 @@ import androidx.annotation.LayoutRes
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
 import androidx.navigation.NavController
 import androidx.navigation.NavOptions
 import com.aod.aivoicechat.activities.MainActivity
+import com.aod.aivoicechat.viewmodels.ChatViewModel
 
 abstract class BaseFragment<Binding : ViewDataBinding>(@LayoutRes private val layoutResId: Int) :
     Fragment() {
     lateinit var binding: Binding
     lateinit var mActivity: MainActivity
+
+    val chatViewModel: ChatViewModel by activityViewModels()
 
     override fun onAttach(context: Context) {
         super.onAttach(context)

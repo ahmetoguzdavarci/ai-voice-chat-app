@@ -10,6 +10,8 @@ import com.aod.aivoicechat.ui.BaseFragment
 
 class HomeFragment : BaseFragment<FragmentHomeBinding>(layoutResId = R.layout.fragment_home) {
 
+    private lateinit var chatAdapterChat: AdapterChat
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
@@ -22,6 +24,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(layoutResId = R.layout.fr
                 isSpeaking = true
                 //TODO test
                 Handler(Looper.getMainLooper()).postDelayed({ isSpeaking = false }, 1_000L)
+                chatViewModel.sendMessage("hello, this is a test message")
             }
         }
     }

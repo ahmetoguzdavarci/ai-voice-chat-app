@@ -3,6 +3,22 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <data>
+
+        <variable
+            name="mAdapter"
+            type="com.aod.aivoicechat.ui.home.AdapterChat" />
+
+        <variable
+            name="mMessage"
+            type="com.aod.aivoicechat.data.model.Message" />
+
+        <variable
+            name="mPosition"
+            type="Integer" />
+
+    </data>
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -19,7 +35,9 @@
             android:layout_marginEnd="96dp"
             android:background="@drawable/box_ai"
             android:fontFamily="@font/epunda_slab_medium"
+            android:onClick="@{v->mAdapter.onClick.invoke(mPosition)}"
             android:padding="8dp"
+            android:text="@{mMessage.content}"
             android:textColor="@color/black"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
