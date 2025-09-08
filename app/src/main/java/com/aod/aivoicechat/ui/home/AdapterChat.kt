@@ -5,18 +5,21 @@ import android.text.method.ScrollingMovementMethod
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.aod.aivoicechat.data.ROLE_ASSISTANT
+import com.aod.aivoicechat.data.TYPING
 import com.aod.aivoicechat.data.model.Message
 import com.aod.aivoicechat.databinding.ItemChatAiBinding
-import com.aod.aivoicechat.databinding.ItemChatHumanBinding
+import com.aod.aivoicechat.databinding.ItemChatUserBinding
+import com.aod.aivoicechat.utils.ext.printLogD
 
-class AdapterChat(private val context: Context, val onClick: (Int) -> Unit) :
+class AdapterChat(private val mContext: Context, val onClick: (Int, String) -> Unit) :
     RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
-    inner class HumanViewHolder(val binding: ItemChatHumanBinding) :
-        RecyclerView.ViewHolder(binding.root)   //1
+    inner class UserViewHolder(val binding: ItemChatUserBinding) :
+        RecyclerView.ViewHolder(binding.root)
 
     inner class AIViewHolder(val binding: ItemChatAiBinding) :
-        RecyclerView.ViewHolder(binding.root)   //2
+        RecyclerView.ViewHolder(binding.root)
 
     private var messages: List<Message> = mutableListOf()
 
@@ -25,20 +28,30 @@ class AdapterChat(private val context: Context, val onClick: (Int) -> Unit) :
         notifyDataSetChanged()
     }
 
+    companion object {
+        private const val TYPE_AI = 1
+        private const val TYPE_USER = 2
+    }
+
     override fun getItemViewType(position: Int): Int {
-        return if (messages[position].role == "assistant") 1 else 2
+        return if (messages[position].role == ROLE_ASSISTANT) TYPE_AI else TYPE_USER
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         return when (viewType) {
-            1 -> {
-                ItemChatHumanBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-                    .run { HumanViewHolder(this) }
+            TYPE_AI -> {
+                ItemChatAiBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+                    .run { AIViewHolder(this) }
+            }
+
+            TYPE_USER -> {
+                ItemChatUserBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+                    .run { UserViewHolder(this) }
             }
 
             else -> {
-                ItemChatAiBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-                    .run { AIViewHolder(this) }
+                ("Unknown type").printLogD(tag = javaClass.simpleName)
+                error("Unknown type")
             }
         }
     }
@@ -47,19 +60,23 @@ class AdapterChat(private val context: Context, val onClick: (Int) -> Unit) :
         holder: RecyclerView.ViewHolder,
         position: Int
     ) {
+        val msg = messages[position]
         when (holder.itemViewType) {
-            1 -> {
-                (holder as HumanViewHolder).binding.apply {
-                    itemTextHuman.movementMethod = ScrollingMovementMethod()
-                    mMessage = messages[position]
+            TYPE_AI -> {
+                (holder as AIViewHolder).binding.apply {
+                    mAdapter = this@AdapterChat
+                    isTyping = (msg.content == TYPING)
+                    itemTextAi.movementMethod = ScrollingMovementMethod()
+                    mMessage = msg
                     mPosition = position
                 }
             }
 
-            else -> {
-                (holder as AIViewHolder).binding.apply {
-                    itemTextAi.movementMethod = ScrollingMovementMethod()
-                    mMessage = messages[position]
+            TYPE_USER -> {
+                (holder as UserViewHolder).binding.apply {
+                    mAdapter = this@AdapterChat
+                    itemTextHuman.movementMethod = ScrollingMovementMethod()
+                    mMessage = msg
                     mPosition = position
                 }
             }

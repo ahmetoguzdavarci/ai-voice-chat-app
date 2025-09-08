@@ -8,6 +8,10 @@
     <string name="ai_assistant">AI Assistant</string>
     <string name="ai_first_message">Hello! How can I help you today?</string>
 
+    <string name="mic_permission_message_1">Microphone permission required</string>
+
+    <string name="mic_warning_1">I didn\'t understand what you said</string>
+
     <string name="test_message_1" translatable="false">Lorem ipsum dolor sit amet, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</string>
     <string name="test_message_2" translatable="false">Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</string>
 

@@ -5,6 +5,8 @@
 
     <data>
 
+        <import type="android.view.View" />
+
         <variable
             name="mAdapter"
             type="com.aod.aivoicechat.ui.home.AdapterChat" />
@@ -17,14 +19,18 @@
             name="mPosition"
             type="Integer" />
 
+        <variable
+            name="isTyping"
+            type="Boolean" />
+
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:paddingTop="8dp"
-        android:paddingBottom="8dp"
+        android:paddingTop="4dp"
+        android:paddingBottom="4dp"
         tools:background="@color/transparent">
 
         <TextView
@@ -35,15 +41,33 @@
             android:layout_marginEnd="96dp"
             android:background="@drawable/box_ai"
             android:fontFamily="@font/epunda_slab_medium"
-            android:onClick="@{v->mAdapter.onClick.invoke(mPosition)}"
+            android:foreground="?attr/selectableItemBackground"
+            android:gravity="center|start|top"
+            android:onClick="@{v->mAdapter.onClick.invoke(mPosition, mMessage.content)}"
             android:padding="8dp"
             android:text="@{mMessage.content}"
             android:textColor="@color/black"
+            android:visibility="@{isTyping?View.INVISIBLE:View.VISIBLE, default=visible}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            tools:text="@string/test_message_1" />
+            tools:text="@string/test_message_1"
+            tools:visibility="visible" />
+
+        <com.airbnb.lottie.LottieAnimationView
+            android:id="@+id/animation_typing"
+            android:layout_width="0dp"
+            android:layout_height="64dp"
+            android:background="@drawable/box_ai"
+            android:visibility="@{isTyping?View.VISIBLE:View.GONE, default=gone}"
+            app:layout_constraintEnd_toEndOf="@+id/item_text_ai"
+            app:layout_constraintStart_toStartOf="@+id/item_text_ai"
+            app:layout_constraintTop_toTopOf="@+id/item_text_ai"
+            app:lottie_autoPlay="true"
+            app:lottie_loop="true"
+            app:lottie_rawRes="@raw/animation_typing"
+            tools:visibility="visible" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

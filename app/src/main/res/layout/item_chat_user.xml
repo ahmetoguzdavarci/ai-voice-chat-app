@@ -23,8 +23,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:paddingTop="8dp"
-        android:paddingBottom="8dp"
+        android:paddingTop="4dp"
+        android:paddingBottom="4dp"
         tools:background="@color/transparent">
 
         <TextView
@@ -35,7 +35,9 @@
             android:layout_marginEnd="2dp"
             android:background="@drawable/box_human"
             android:fontFamily="@font/epunda_slab_regular"
-            android:onClick="@{v->mAdapter.onClick.invoke(mPosition)}"
+            android:foreground="?attr/selectableItemBackground"
+            android:gravity="center|end|top"
+            android:onClick="@{v->mAdapter.onClick.invoke(mPosition, mMessage.content)}"
             android:padding="8dp"
             android:text="@{mMessage.content}"
             android:textColor="@color/white"

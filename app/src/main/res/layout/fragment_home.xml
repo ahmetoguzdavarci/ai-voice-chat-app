@@ -8,7 +8,7 @@
         <import type="android.view.View" />
 
         <variable
-            name="isSpeaking"
+            name="mUserSpeaking"
             type="Boolean" />
 
     </data>
@@ -60,7 +60,7 @@
                 android:paddingBottom="64dp"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 tools:itemCount="12"
-                tools:listitem="@layout/item_chat_ai" />
+                tools:listitem="@layout/item_chat_user" />
 
         </LinearLayout>
 
@@ -68,10 +68,10 @@
             android:id="@+id/btn_mic"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="48dp"
+            android:layout_marginBottom="64dp"
             android:contentDescription="@string/image_description"
             android:src="@drawable/home_ic_mic"
-            android:visibility="@{isSpeaking?View.INVISIBLE:View.VISIBLE, default=visible}"
+            android:visibility="@{mUserSpeaking?View.INVISIBLE:View.VISIBLE, default=visible}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -81,10 +81,14 @@
             android:id="@+id/animation_wave"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:visibility="@{isSpeaking?View.VISIBLE:View.INVISIBLE, default=invisible}"
+            android:layout_marginStart="64dp"
+            android:layout_marginTop="-16dp"
+            android:layout_marginEnd="64dp"
+            android:layout_marginBottom="-16dp"
+            android:visibility="@{mUserSpeaking?View.VISIBLE:View.INVISIBLE, default=invisible}"
             app:layout_constraintBottom_toBottomOf="@+id/btn_mic"
-            app:layout_constraintEnd_toEndOf="@+id/btn_mic"
-            app:layout_constraintStart_toStartOf="@+id/btn_mic"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@+id/btn_mic"
             app:lottie_autoPlay="true"
             app:lottie_loop="true"
