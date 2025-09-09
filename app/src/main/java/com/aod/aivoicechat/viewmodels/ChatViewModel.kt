@@ -1,5 +1,7 @@
 package com.aod.aivoicechat.viewmodels
 
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.aod.aivoicechat.data.ROLE_ASSISTANT
@@ -78,5 +80,11 @@ class ChatViewModel(private val repo: ApiRepository = ApiRepository()) : ViewMod
     private fun buildChatRequest(history: List<Message>): ChatRequest {
         val msgs = history.map { Message(role = it.role, content = it.content) }
         return ChatRequest(messages = msgs)
+    }
+
+    private val readyTTS_ = MutableLiveData(false)
+    val _readyTTS: LiveData<Boolean> get() = readyTTS_
+    fun setReadyTTS(value: Boolean) {
+        readyTTS_.value = value
     }
 }

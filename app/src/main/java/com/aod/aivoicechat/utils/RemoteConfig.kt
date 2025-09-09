@@ -4,7 +4,6 @@ import com.google.firebase.ktx.Firebase
 import com.google.firebase.remoteconfig.FirebaseRemoteConfig
 import com.google.firebase.remoteconfig.ktx.remoteConfig
 import com.google.firebase.remoteconfig.remoteConfigSettings
-import kotlinx.coroutines.tasks.await
 
 object RemoteConfig {
     private const val CHATGPT_API_KEY = "chatGPT_api_key"
@@ -29,8 +28,6 @@ object RemoteConfig {
 
         rc.fetchAndActivate().addOnCompleteListener { t -> loaded = t.isSuccessful }
     }
-
-    suspend fun fetchAndCache(): Boolean = runCatching { rc.fetchAndActivate().await() }.isSuccess
 
     fun getApiKey(): String = rc.getString(CHATGPT_API_KEY)
 

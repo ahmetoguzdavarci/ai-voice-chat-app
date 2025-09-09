@@ -38,7 +38,8 @@ class MainActivity : BaseActivity<ActivityMainBinding>(layoutResId = R.layout.ac
             enablePartial = true,
             onReady = null
         )
-        TTSManager.init(this)
+
+        TTSManager.init(this, onReady = { chatViewModel.setReadyTTS(true) })
 
         MicPermissionManager.init(activity = this)
     }

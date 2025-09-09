@@ -71,8 +71,9 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(layoutResId = R.layout.fr
 
     private fun observeMessages() {
         (getText(R.string.ai_first_message) as String).let {
-            chatViewModel.setFirstAssistantMessage(text = getText(R.string.ai_first_message) as String)
-            TTSManager.speak(text = it)
+            val txt = it
+            chatViewModel.setFirstAssistantMessage(text = txt)
+            chatViewModel._readyTTS.observe(viewLifecycleOwner) { TTSManager.speak(text = txt) }
         }
 
         viewLifecycleOwner.lifecycleScope.launch {
