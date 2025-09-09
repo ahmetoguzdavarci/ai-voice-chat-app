@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/warning_bg_color">
+
+        <ImageView
+            android:id="@+id/warning_image"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:contentDescription="@string/image_description"
+            android:src="@drawable/image_no_connection_100"
+            app:layout_constraintBottom_toTopOf="@+id/warning_line_1"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <View
+            android:id="@+id/warning_line_1"
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/warning_text_1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="24dp"
+            android:layout_marginEnd="32dp"
+            android:fontFamily="@font/epunda_slab_medium"
+            android:gravity="center"
+            android:text="@string/warning_message_1"
+            android:textColor="@color/black"
+            android:textSize="32sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/warning_image" />
+
+        <TextView
+            android:id="@+id/warning_btn_close"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/box_close"
+            android:fontFamily="@font/epunda_slab_medium"
+            android:gravity="center"
+            android:padding="8dp"
+            android:text="@string/close"
+            android:textColor="@color/white"
+            android:textSize="24sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/warning_text_1"
+            app:layout_constraintStart_toStartOf="@+id/warning_text_1"
+            app:layout_constraintTop_toBottomOf="@+id/warning_text_1" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

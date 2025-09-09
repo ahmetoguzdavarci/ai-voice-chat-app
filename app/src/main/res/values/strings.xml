@@ -12,6 +12,11 @@
 
     <string name="mic_warning_1">I didn\'t understand what you said</string>
 
+    <string name="warning_message_1">Please check your internet connection</string>
+
+    <string name="exit">EXIT</string>
+    <string name="close">CLOSE</string>
+
     <string name="test_message_1" translatable="false">Lorem ipsum dolor sit amet, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</string>
     <string name="test_message_2" translatable="false">Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</string>
 

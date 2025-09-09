@@ -5,6 +5,7 @@ import android.os.Handler
 import android.os.Looper
 import com.aod.aivoicechat.R
 import com.aod.aivoicechat.databinding.ActivityStartBinding
+import com.aod.aivoicechat.utils.RemoteConfig
 import com.aod.aivoicechat.utils.ext.fadeIn
 import com.aod.aivoicechat.utils.ext.hideSystemUI
 import com.aod.aivoicechat.utils.ext.showDarkTextInStatusBar
@@ -22,17 +23,9 @@ class StartActivity : BaseActivity<ActivityStartBinding>(layoutResId = R.layout.
 
         hideSystemUI()
         showDarkTextInStatusBar(false)
-    }
-
-    override fun onResume() {
-        super.onResume()
 
         setPageAnimation()
         setAutoNextPage()
-    }
-
-    override fun onPause() {
-        super.onPause()
     }
 
     private fun setPageAnimation() {
@@ -44,7 +37,12 @@ class StartActivity : BaseActivity<ActivityStartBinding>(layoutResId = R.layout.
 
     private fun setAutoNextPage() {
         animHandler.postDelayed(
-            { startActivity(activityClass = MainActivity::class.java, finish = true) },
+            {
+                startActivity(
+                    activityClass = if (RemoteConfig.isApiReady()) MainActivity::class.java else WarningActivity::class.java,
+                    finish = true
+                )
+            },
             animDelay
         )
     }

@@ -4,6 +4,8 @@ plugins {
     id 'kotlin-kapt'
     id 'kotlin-parcelize'
     id 'kotlin-android'
+    id 'com.google.gms.google-services'
+    id 'com.google.firebase.crashlytics'
 }
 
 android {
@@ -90,6 +92,12 @@ dependencies {
 
     //lottie
     implementation "com.airbnb.android:lottie:${lottie_version}"
+
+    //firebase
+    api platform("com.google.firebase:firebase-bom:${firebase_bom_version}")
+    api 'com.google.firebase:firebase-config'
+    api 'com.google.firebase:firebase-analytics'
+    api 'com.google.firebase:firebase-messaging'
 
     //test
     testImplementation "junit:junit:4.13.2"
