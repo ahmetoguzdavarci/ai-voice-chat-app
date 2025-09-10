@@ -1,7 +1,7 @@
 # ai-voice-chat-app
 Kotlin - Android Studio
 
-```bash
+
 ## App Features
 
 - Real-time voice chat: Streaming speech recognition (STT) with synthesized assistant replies (TTS).
@@ -17,10 +17,9 @@ Kotlin - Android Studio
 - Operational controls: Remote configuration flags (enable/disable API usage) and resilient error handling with retry/backoff.
 
 - Observability: Crash reporting and lightweight analytics.
-```
 
-```bash
-## Technologies Used
+
+Technologies Used
 
 - Language & Concurrency: Kotlin, Coroutines, Flow/StateFlow.
 
@@ -35,6 +34,6 @@ Kotlin - Android Studio
 - UI: Material Components, RecyclerView.
 
 - Build/Tooling: Gradle, Android Gradle Plugin.
-```
+
 
 <img width="512" height="512" alt="ic_launcher_playstore" src="https://github.com/user-attachments/assets/de7d5bc7-9236-4613-8ddf-0b93e3b29e0b" />
