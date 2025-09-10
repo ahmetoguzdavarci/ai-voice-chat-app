@@ -1,0 +1,19 @@
+<resources>
+    <string name="home">Ana Sayfa</string>
+    <string name="settings">Ayarlar</string>
+
+    <string name="spoken_language">Konuşma Dili</string>
+
+    <string name="ai_assistant">Yapay Zekâ Asistanı</string>
+    <string name="ai_first_message">Merhaba! Bugün size nasıl yardımcı olabilirim?</string>
+
+    <string name="mic_permission_message_1">Mikrofon izni gerekli</string>
+
+    <string name="mic_warning_1">Ne söylediğinizi anlamadım</string>
+
+    <string name="warning_message_1">Lütfen internet bağlantınızı kontrol edin</string>
+
+    <string name="exit">ÇIKIŞ</string>
+    <string name="close">KAPAT</string>
+
+</resources>

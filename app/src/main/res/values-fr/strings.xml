@@ -1,0 +1,19 @@
+<resources>
+    <string name="home">Accueil</string>
+    <string name="settings">Paramètres</string>
+
+    <string name="spoken_language">Langue parlée</string>
+
+    <string name="ai_assistant">Assistant IA</string>
+    <string name="ai_first_message">Bonjour! Comment puis-je vous aider aujourd\'hui?</string>
+
+    <string name="mic_permission_message_1">Autorisation du microphone requise</string>
+
+    <string name="mic_warning_1">Je n\'ai pas compris ce que vous avez dit</string>
+
+    <string name="warning_message_1">Veuillez vérifier votre connexion Internet</string>
+
+    <string name="exit">QUITTER</string>
+    <string name="close">FERMER</string>
+
+</resources>

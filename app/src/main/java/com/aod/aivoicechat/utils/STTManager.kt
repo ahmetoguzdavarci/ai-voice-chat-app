@@ -22,7 +22,7 @@ object STTManager {
 
     fun init(
         context: Context,
-        language: Locale = Locale.getDefault(),
+        language: Locale,
         preferOffline: Boolean = false,
         enablePartial: Boolean = true,
         onReady: (() -> Unit)? = null
@@ -35,38 +35,40 @@ object STTManager {
         }
 
         recognizer = SpeechRecognizer.createSpeechRecognizer(context.applicationContext).apply {
-            setRecognitionListener(object : RecognitionListener {
-                override fun onReadyForSpeech(params: Bundle?) {
-                    listener?.onReady()
-                    onReady?.invoke()
+            setRecognitionListener(
+                object : RecognitionListener {
+                    override fun onReadyForSpeech(params: Bundle?) {
+                        listener?.onReady()
+                        onReady?.invoke()
+                    }
+
+                    override fun onBeginningOfSpeech() {}
+                    override fun onRmsChanged(rmsdB: Float) {}
+                    override fun onBufferReceived(buffer: ByteArray?) {}
+                    override fun onEndOfSpeech() {}
+
+                    override fun onError(error: Int) {
+                        listener?.onError(error)
+                    }
+
+                    override fun onPartialResults(partialResults: Bundle?) {
+                        if (!enablePartial) return
+                        val text = partialResults
+                            ?.getStringArrayList(SpeechRecognizer.RESULTS_RECOGNITION)
+                            ?.firstOrNull()
+                        if (!text.isNullOrBlank()) listener?.onPartial(text)
+                    }
+
+                    override fun onResults(results: Bundle) {
+                        val text = results
+                            .getStringArrayList(SpeechRecognizer.RESULTS_RECOGNITION)
+                            ?.firstOrNull()
+                        if (!text.isNullOrBlank()) listener?.onFinal(text)
+                    }
+
+                    override fun onEvent(eventType: Int, params: Bundle?) {}
                 }
-
-                override fun onBeginningOfSpeech() {}
-                override fun onRmsChanged(rmsdB: Float) {}
-                override fun onBufferReceived(buffer: ByteArray?) {}
-                override fun onEndOfSpeech() {}
-
-                override fun onError(error: Int) {
-                    listener?.onError(error)
-                }
-
-                override fun onPartialResults(partialResults: Bundle?) {
-                    if (!enablePartial) return
-                    val text = partialResults
-                        ?.getStringArrayList(SpeechRecognizer.RESULTS_RECOGNITION)
-                        ?.firstOrNull()
-                    if (!text.isNullOrBlank()) listener?.onPartial(text)
-                }
-
-                override fun onResults(results: Bundle) {
-                    val text = results
-                        .getStringArrayList(SpeechRecognizer.RESULTS_RECOGNITION)
-                        ?.firstOrNull()
-                    if (!text.isNullOrBlank()) listener?.onFinal(text)
-                }
-
-                override fun onEvent(eventType: Int, params: Bundle?) {}
-            })
+            )
         }
 
         this.language = language
@@ -77,6 +79,10 @@ object STTManager {
 
     fun setListener(listener: STTListener?) {
         this.listener = listener
+    }
+
+    fun setLanguage(language: String) {
+        this.language = Locale.forLanguageTag(language)
     }
 
     fun startListening() {
@@ -109,7 +115,16 @@ object STTManager {
                 RecognizerIntent.EXTRA_LANGUAGE_MODEL,
                 RecognizerIntent.LANGUAGE_MODEL_FREE_FORM
             )
-            putExtra(RecognizerIntent.EXTRA_LANGUAGE, language.toLanguageTag())
+            val langTag = when(language.language){
+                "en" -> "en-US"
+                "tr" -> "tr-TR"
+                "fr" -> "fr-FR"
+                "de" -> "de-DE"
+                else -> language.language
+            }
+            putExtra(RecognizerIntent.EXTRA_LANGUAGE, langTag)
+            putExtra(RecognizerIntent.EXTRA_LANGUAGE_PREFERENCE, langTag)
+
             putExtra(RecognizerIntent.EXTRA_PARTIAL_RESULTS, enablePartial)
             putExtra(RecognizerIntent.EXTRA_PREFER_OFFLINE, preferOffline)
             putExtra(RecognizerIntent.EXTRA_MAX_RESULTS, 1)

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="title_en">English</string>
+    <string name="title_tr">Turkish</string>
+    <string name="title_fr">French</string>
+    <string name="title_de">German</string>
+
+    <string name="code_en" translatable="false">en</string>
+    <string name="code_tr" translatable="false">tr</string>
+    <string name="code_fr" translatable="false">fr</string>
+    <string name="code_de" translatable="false">de</string>
+
+</resources>

@@ -45,9 +45,8 @@ object MicPermissionManager {
             onDenied?.invoke(false)
             return
         }
-        if (isGranted(act)) {
-            onGranted()
-        } else {
+        if (isGranted(act)) onGranted()
+        else {
             pending = { granted, permanentlyDenied ->
                 if (granted) onGranted() else onDenied?.invoke(permanentlyDenied)
             }

@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="title_en">Englisch</string>
+    <string name="title_tr">Türkisch</string>
+    <string name="title_fr">Französisch</string>
+    <string name="title_de">Deutsch</string>
+
+</resources>

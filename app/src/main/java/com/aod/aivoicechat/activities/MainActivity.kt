@@ -12,6 +12,8 @@ import com.aod.aivoicechat.utils.STTManager
 import com.aod.aivoicechat.utils.TTSManager
 import com.aod.aivoicechat.utils.ext.hideSystemUI
 import com.aod.aivoicechat.utils.ext.showDarkTextInStatusBar
+import com.aod.aivoicechat.utils.getLanguage
+import com.aod.aivoicechat.utils.toLocale
 import java.util.Locale
 
 class MainActivity : BaseActivity<ActivityMainBinding>(layoutResId = R.layout.activity_main),
@@ -33,8 +35,8 @@ class MainActivity : BaseActivity<ActivityMainBinding>(layoutResId = R.layout.ac
 
         STTManager.init(
             context = this,
-            language = Locale.getDefault(),
-            preferOffline = true,
+            language = getLanguage?.toLocale() ?: Locale.getDefault(),
+            preferOffline = false,
             enablePartial = true,
             onReady = null
         )

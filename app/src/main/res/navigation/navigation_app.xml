@@ -8,7 +8,13 @@
     <fragment
         android:id="@+id/homeFragment"
         android:name="com.aod.aivoicechat.ui.home.HomeFragment"
-        android:label="HomeFragment"
+        android:label="@string/home"
         tools:layout="@layout/fragment_home" />
+
+    <fragment
+        android:id="@+id/settingsFragment"
+        android:name="com.aod.aivoicechat.ui.settings.SettingsFragment"
+        android:label="@string/settings"
+        tools:layout="@layout/fragment_settings" />
 
 </navigation>

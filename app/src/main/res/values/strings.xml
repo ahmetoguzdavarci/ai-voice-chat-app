@@ -5,8 +5,18 @@
 
     <string name="hello_blank_fragment" translatable="false">Hello blank fragment</string>
 
+    <string name="home">Home</string>
+    <string name="settings">Settings</string>
+
+    <string name="spoken_language">Spoken Language</string>
+
     <string name="ai_assistant">AI Assistant</string>
     <string name="ai_first_message">Hello! How can I help you today?</string>
+
+    <string name="ai_first_message_en" translatable="false">Hello! How can I help you today?</string>
+    <string name="ai_first_message_tr" translatable="false">Merhaba! Bugün size nasıl yardımcı olabilirim?</string>
+    <string name="ai_first_message_de" translatable="false">>Hallo! Wie kann ich Ihnen heute helfen?</string>
+    <string name="ai_first_message_fr" translatable="false">Bonjour! Comment puis-je vous aider aujourd\'hui?</string>
 
     <string name="mic_permission_message_1">Microphone permission required</string>
 

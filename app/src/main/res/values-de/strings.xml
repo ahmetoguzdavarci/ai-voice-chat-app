@@ -1,0 +1,19 @@
+<resources>
+    <string name="home">Startseite</string>
+    <string name="settings">Einstellungen</string>
+
+    <string name="spoken_language">Gesprochene Sprache</string>
+
+    <string name="ai_assistant">KI-Assistent</string>
+    <string name="ai_first_message">Hallo! Wie kann ich Ihnen heute helfen?</string>
+
+    <string name="mic_permission_message_1">Mikrofonberechtigung erforderlich</string>
+
+    <string name="mic_warning_1">Ich habe nicht verstanden, was Sie gesagt haben</string>
+
+    <string name="warning_message_1">Bitte überprüfen Sie Ihre Internetverbindung</string>
+
+    <string name="exit">BEENDEN</string>
+    <string name="close">SCHLIESSEN</string>
+
+</resources>

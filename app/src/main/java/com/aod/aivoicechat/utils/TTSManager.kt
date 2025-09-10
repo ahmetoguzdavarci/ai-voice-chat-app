@@ -18,7 +18,7 @@ object TTSManager {
             TextToSpeech.OnInitListener { status ->
                 isInitialized = (status == TextToSpeech.SUCCESS)
                 if (isInitialized) {
-                    tts?.language = Locale.getDefault()
+                    setLanguage(context.getLanguage ?: Locale.getDefault().language)
                     onReady?.invoke()
                 }
             },
@@ -53,12 +53,18 @@ object TTSManager {
         tts?.stop()
     }
 
+    fun isSpeaking(): Boolean = tts?.isSpeaking == true
+
     fun isLanguageAvailable(language: Locale): Boolean {
         return (tts?.isLanguageAvailable(language) == TextToSpeech.LANG_AVAILABLE)
     }
 
     fun setLanguage(language: Locale) {
         tts?.language = language
+    }
+
+    fun setLanguage(language: String) {
+        tts?.language = Locale.forLanguageTag(language)
     }
 
     fun shutdown() {
