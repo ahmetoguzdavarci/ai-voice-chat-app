@@ -3,7 +3,6 @@ plugins {
     id 'org.jetbrains.kotlin.android'
     id 'kotlin-kapt'
     id 'kotlin-parcelize'
-    id 'kotlin-android'
     id 'com.google.gms.google-services'
     id 'com.google.firebase.crashlytics'
 }
@@ -27,11 +26,11 @@ android {
     buildTypes {
         release {
             minifyEnabled true
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
         debug {
             minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
             android.applicationVariants.all { variant ->
                 variant.outputs.all {
                     outputFileName = "DEBUG_APK_${variant.applicationId}_${variant.versionName}.apk"
@@ -94,10 +93,10 @@ dependencies {
     implementation "com.airbnb.android:lottie:${lottie_version}"
 
     //firebase
-    api platform("com.google.firebase:firebase-bom:${firebase_bom_version}")
-    api 'com.google.firebase:firebase-config'
-    api 'com.google.firebase:firebase-analytics'
-    api 'com.google.firebase:firebase-messaging'
+    implementation platform("com.google.firebase:firebase-bom:${firebase_bom_version}")
+    implementation 'com.google.firebase:firebase-config'
+    implementation 'com.google.firebase:firebase-analytics'
+    implementation 'com.google.firebase:firebase-messaging'
 
     //test
     testImplementation "junit:junit:4.13.2"

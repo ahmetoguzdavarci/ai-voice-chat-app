@@ -143,10 +143,4 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(layoutResId = R.layout.fr
         TTSManager.stopSpeak()
         super.onDestroyView()
     }
-
-    override fun onDestroy() {
-        STTManager.shutdown()
-        TTSManager.shutdown()
-        super.onDestroy()
-    }
 }

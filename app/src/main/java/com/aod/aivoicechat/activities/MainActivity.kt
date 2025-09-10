@@ -53,4 +53,10 @@ class MainActivity : BaseActivity<ActivityMainBinding>(layoutResId = R.layout.ac
     ) {
         fragmentId = destination.id
     }
+
+    override fun onDestroy() {
+        TTSManager.shutdown()
+        STTManager.shutdown()
+        super.onDestroy()
+    }
 }
