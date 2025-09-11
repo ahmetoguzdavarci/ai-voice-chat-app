@@ -3,6 +3,7 @@ package com.aod.aivoicechat.ui.home
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
+import android.speech.tts.UtteranceProgressListener
 import android.view.View
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
@@ -64,6 +65,22 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(layoutResId = R.layout.fr
 
             animationWave.setOnClickListener { stopSTT() }
         }
+
+        TTSManager.setListener(
+            object : UtteranceProgressListener() {
+                override fun onDone(p0: String?) {
+                    chatViewModel.setSpeaking(value = false)
+                    chatViewModel.setSpeakingId(value = -1)
+                }
+
+                override fun onError(p0: String?) {
+                    chatViewModel.setSpeaking(value = false)
+                    chatViewModel.setSpeakingId(value = -1)
+                }
+
+                override fun onStart(p0: String?) {}
+            }
+        )
     }
 
     private fun setChatAdapter() {
@@ -73,8 +90,8 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(layoutResId = R.layout.fr
                 viewModel = chatViewModel,
                 lifecycleOwner = this@HomeFragment,
                 onClick = { _position, _text ->
-                    if (TTSManager.isSpeaking()) stopTTS()
-                    else speakTTS(txt = _text)
+                    if (TTSManager.isSpeaking()) stopTTS(id = _position)
+                    else speakTTS(txt = _text, id = _position)
                 }
             ).run {
                 chatAdapter = this
@@ -99,12 +116,12 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(layoutResId = R.layout.fr
                     list.last().content.let {
                         if (it == TYPING || it.isBlank()) return@let
 
-                        if (chatViewModel._readyTTS.value == true) speakTTS(txt = it)
+                        if (chatViewModel._readyTTS.value == true) speakTTS(txt = it, list.lastIndex)
                         else {
                             val once = object : androidx.lifecycle.Observer<Boolean> {
                                 override fun onChanged(value: Boolean) {
                                     if (value) {
-                                        TTSManager.speak(text = it)
+                                        speakTTS(txt = it, id = list.lastIndex)
                                         chatViewModel._readyTTS.removeObserver(this)
                                     }
                                 }
@@ -117,12 +134,16 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(layoutResId = R.layout.fr
         }
     }
 
-    private fun speakTTS(txt: String) {
-        TTSManager.speak(text = txt)
+    private fun speakTTS(txt: String, id: Int) {
+        TTSManager.speak(text = txt, utteranceId = id.toString())
+        chatViewModel.setSpeaking(value = true)
+        chatViewModel.setSpeakingId(value = id)
     }
 
-    private fun stopTTS() {
+    private fun stopTTS(id: Int) {
         TTSManager.stopSpeak()
+        chatViewModel.setSpeaking(value = false)
+        chatViewModel.setSpeakingId(value = id)
     }
 
     private fun startSTT() {

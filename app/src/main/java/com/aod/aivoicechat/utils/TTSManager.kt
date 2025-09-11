@@ -11,6 +11,8 @@ object TTSManager {
     private var tts: TextToSpeech? = null
     private var isInitialized = false
 
+    private var pendingListener: UtteranceProgressListener? = null
+
     fun init(context: Context, onReady: (() -> Unit)? = null) {
         if (tts.isNotNull()) return
         tts = TextToSpeech(
@@ -19,6 +21,7 @@ object TTSManager {
                 isInitialized = (status == TextToSpeech.SUCCESS)
                 if (isInitialized) {
                     setLanguage(context.getLanguage ?: Locale.getDefault().language)
+                    pendingListener?.let { tts?.setOnUtteranceProgressListener(it) }
                     onReady?.invoke()
                 }
             },
@@ -27,6 +30,7 @@ object TTSManager {
     }
 
     fun setListener(listener: UtteranceProgressListener) {
+        pendingListener = listener
         if (isInitialized) {
             tts?.setOnUtteranceProgressListener(listener)
         }

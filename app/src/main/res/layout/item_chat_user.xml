@@ -33,6 +33,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
+        android:onClick="@{v->mAdapter.onClick.invoke(mPosition, mMessage.content)}"
         android:paddingTop="4dp"
         android:paddingBottom="4dp"
         tools:background="@color/transparent">
@@ -56,6 +57,18 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             tools:text="@string/test_message_2" />
+
+        <ImageView
+            android:id="@+id/item_btn_play"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:contentDescription="@string/image_description"
+            android:src="@{(mViewModel._speaking &amp;&amp; mViewModel._speakingId == mPosition) ? @drawable/ic_stop : @drawable/ic_play}"
+            app:layout_constraintBottom_toBottomOf="@+id/item_text_human"
+            app:layout_constraintEnd_toStartOf="@+id/item_text_human"
+            app:layout_constraintTop_toTopOf="@+id/item_text_human"
+            tools:src="@drawable/ic_play" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

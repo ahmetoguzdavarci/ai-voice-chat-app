@@ -87,4 +87,16 @@ class ChatViewModel(private val repo: ApiRepository = ApiRepository()) : ViewMod
     fun setReadyTTS(value: Boolean) {
         readyTTS_.value = value
     }
+
+    private val speaking_ = MutableLiveData(false)
+    val _speaking: LiveData<Boolean> get() = speaking_
+    fun setSpeaking(value: Boolean) {
+        speaking_.postValue(value)
+    }
+
+    private val speakingId_ = MutableLiveData(0)
+    val _speakingId: LiveData<Int> get() = speakingId_
+    fun setSpeakingId(value: Int) {
+        speakingId_.postValue(value)
+    }
 }

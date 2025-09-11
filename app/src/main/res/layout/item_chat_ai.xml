@@ -38,6 +38,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:foreground="?attr/selectableItemBackground"
+        android:onClick="@{v->mAdapter.onClick.invoke(mPosition, mMessage.content)}"
         android:paddingTop="4dp"
         android:paddingBottom="4dp"
         tools:background="@color/transparent">
@@ -64,12 +65,25 @@
             tools:text="@string/test_message_1"
             tools:visibility="visible" />
 
+        <ImageView
+            android:id="@+id/item_btn_play"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:contentDescription="@string/image_description"
+            android:src="@{(mViewModel._speaking &amp;&amp; mViewModel._speakingId == mPosition) ? @drawable/ic_stop : @drawable/ic_play}"
+            app:layout_constraintBottom_toBottomOf="@+id/item_text_ai"
+            app:layout_constraintStart_toEndOf="@+id/item_text_ai"
+            app:layout_constraintTop_toTopOf="@+id/item_text_ai"
+            tools:src="@drawable/ic_stop" />
+
         <com.airbnb.lottie.LottieAnimationView
             android:id="@+id/animation_typing"
             android:layout_width="0dp"
             android:layout_height="64dp"
             android:background="@drawable/box_ai"
             android:visibility="@{isTyping?View.VISIBLE:View.GONE, default=gone}"
+            app:layout_constraintBottom_toBottomOf="@+id/item_text_ai"
             app:layout_constraintEnd_toEndOf="@+id/item_text_ai"
             app:layout_constraintStart_toStartOf="@+id/item_text_ai"
             app:layout_constraintTop_toTopOf="@+id/item_text_ai"
