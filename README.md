@@ -42,3 +42,9 @@ Kotlin - Android Studio
 
 
 <img width="512" height="512" alt="ic_launcher_playstore" src="https://github.com/user-attachments/assets/de7d5bc7-9236-4613-8ddf-0b93e3b29e0b" />
+
+<img width="421" height="885" alt="Screenshot_1" src="https://github.com/user-attachments/assets/1161b260-c0d7-4f8f-bdd7-6f2e22bfc6dc" />
+
+<img width="424" height="882" alt="Screenshot_2" src="https://github.com/user-attachments/assets/91a0e09b-f3d2-46a4-aa90-015a09409747" />
+
+<img width="419" height="878" alt="Screenshot_3" src="https://github.com/user-attachments/assets/0b768fb2-137d-4778-bf83-f59da58f01b2" />
