@@ -42,14 +42,14 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(layoutResId = R.layout.fr
     private fun setItemClick() {
         binding.apply {
             homeBtnSettings.setOnClickListener {
-                TTSManager.stopSpeak()
+                stopTTS(id = chatViewModel._speakingId.value!!)
                 STTManager.stopListening()
                 //findNavController().goToFragment(R.id.settingsFragment)
                 findNavController().goToFragment(R.id.composeSettingsFragment)
             }
 
             btnMic.setOnClickListener {
-                TTSManager.stopSpeak()
+                stopTTS(id = chatViewModel._speakingId.value!!)
 
                 MicPermissionManager.check(
                     onGranted = {
