@@ -16,7 +16,7 @@ Kotlin - Android Studio
 
 - Permission UX: Microphone permission flow with settings deep-link and graceful fallbacks.
 
-- Operational controls: Remote configuration flags (enable/disable API usage) and resilient error handling with retry/backoff.
+- Operational controls: Remote configuration flags (enable/disable API usage, change API key remotely) and resilient error handling with retry/backoff.
 
 - Observability: Crash reporting and lightweight analytics.
 

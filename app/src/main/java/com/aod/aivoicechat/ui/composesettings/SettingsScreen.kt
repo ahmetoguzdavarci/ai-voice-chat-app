@@ -1,6 +1,7 @@
 package com.aod.aivoicechat.ui.composesettings
 
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -24,6 +25,7 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
 import androidx.compose.material3.TopAppBar
+import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -35,6 +37,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
@@ -67,9 +70,13 @@ fun SettingsScreen(onBack: () -> Unit) {
     var expanded by rememberSaveable { mutableStateOf(false) }
 
     Scaffold(
+        containerColor = colorResource(R.color.main_bg_color),
         topBar = {
             TopAppBar(
                 title = { Text(text = stringResource(R.string.settings)) },
+                colors = TopAppBarDefaults.topAppBarColors(
+                    containerColor = colorResource(R.color.main_bg_color)
+                ),
                 navigationIcon = {
                     IconButton(onClick = onBack) {
                         Icon(
@@ -85,6 +92,7 @@ fun SettingsScreen(onBack: () -> Unit) {
             modifier = Modifier
                 .padding(inner)
                 .fillMaxSize()
+                .background(colorResource(R.color.main_bg_color))
                 .padding(horizontal = 24.dp, vertical = 24.dp),
             verticalArrangement = Arrangement.Top
         ) {
