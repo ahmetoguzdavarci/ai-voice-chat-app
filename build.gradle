@@ -5,7 +5,7 @@ buildscript {
         android_material_version = "1.13.0"
         constraint_layout_version = "2.2.1"
 
-        navigation_version = "2.9.3"
+        navigation_version = "2.9.4"
 
         coroutines_core_version = "1.9.0"
         coroutines_android_version = "1.10.2"
