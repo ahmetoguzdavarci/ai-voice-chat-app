@@ -45,7 +45,5 @@ Kotlin - Android Studio
 
 <img width="426" height="887" alt="Screenshot_2" src="https://github.com/user-attachments/assets/7fec6b4f-76e4-4a94-bb74-55e913e35e6f" />
 
-<img width="424" height="882" alt="Screenshot_2" src="https://github.com/user-attachments/assets/91a0e09b-f3d2-46a4-aa90-015a09409747" />
-
 <img width="427" height="889" alt="Screenshot_3" src="https://github.com/user-attachments/assets/94e5e54a-e3e2-4a5e-a6bf-56381079a4b7" />
 
