@@ -87,10 +87,4 @@ class ChatViewModel(private val repo: ApiRepository = ApiRepository()) : ViewMod
     fun setReadyTTS(value: Boolean) {
         readyTTS_.value = value
     }
-
-//    private val skipFirstMessage_ = MutableLiveData(false)
-//    val _skipFirstMessage: LiveData<Boolean> get() = skipFirstMessage_
-//    fun setSkipFirstMessage(value: Boolean) {
-//        skipFirstMessage_.value = value
-//    }
 }

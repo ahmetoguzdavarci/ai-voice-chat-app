@@ -4,6 +4,7 @@ import android.content.Context
 import android.text.method.ScrollingMovementMethod
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.lifecycle.LifecycleOwner
 import androidx.recyclerview.widget.RecyclerView
 import com.aod.aivoicechat.data.ROLE_ASSISTANT
 import com.aod.aivoicechat.data.TYPING
@@ -11,8 +12,14 @@ import com.aod.aivoicechat.data.model.Message
 import com.aod.aivoicechat.databinding.ItemChatAiBinding
 import com.aod.aivoicechat.databinding.ItemChatUserBinding
 import com.aod.aivoicechat.utils.ext.printLogD
+import com.aod.aivoicechat.viewmodels.ChatViewModel
 
-class AdapterChat(private val mContext: Context, val onClick: (Int, String) -> Unit) :
+class AdapterChat(
+    private val mContext: Context,
+    private val viewModel: ChatViewModel,
+    private val lifecycleOwner: LifecycleOwner,
+    val onClick: (Int, String) -> Unit
+) :
     RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     inner class UserViewHolder(val binding: ItemChatUserBinding) :
@@ -65,6 +72,8 @@ class AdapterChat(private val mContext: Context, val onClick: (Int, String) -> U
             TYPE_AI -> {
                 (holder as AIViewHolder).binding.apply {
                     mAdapter = this@AdapterChat
+                    mViewModel = this@AdapterChat.viewModel
+                    lifecycleOwner = this@AdapterChat.lifecycleOwner
                     isTyping = (msg.content == TYPING)
                     itemTextAi.movementMethod = ScrollingMovementMethod()
                     mMessage = msg
@@ -75,6 +84,8 @@ class AdapterChat(private val mContext: Context, val onClick: (Int, String) -> U
             TYPE_USER -> {
                 (holder as UserViewHolder).binding.apply {
                     mAdapter = this@AdapterChat
+                    mViewModel = this@AdapterChat.viewModel
+                    lifecycleOwner = this@AdapterChat.lifecycleOwner
                     itemTextHuman.movementMethod = ScrollingMovementMethod()
                     mMessage = msg
                     mPosition = position

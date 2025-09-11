@@ -70,9 +70,11 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(layoutResId = R.layout.fr
         binding.apply {
             AdapterChat(
                 mContext = requireContext(),
+                viewModel = chatViewModel,
+                lifecycleOwner = this@HomeFragment,
                 onClick = { _position, _text ->
-                    if (TTSManager.isSpeaking()) TTSManager.stopSpeak()
-                    else TTSManager.speak(text = _text)
+                    if (TTSManager.isSpeaking()) stopTTS()
+                    else speakTTS(txt = _text)
                 }
             ).run {
                 chatAdapter = this
@@ -97,7 +99,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(layoutResId = R.layout.fr
                     list.last().content.let {
                         if (it == TYPING || it.isBlank()) return@let
 
-                        if (chatViewModel._readyTTS.value == true) TTSManager.speak(text = it)
+                        if (chatViewModel._readyTTS.value == true) speakTTS(txt = it)
                         else {
                             val once = object : androidx.lifecycle.Observer<Boolean> {
                                 override fun onChanged(value: Boolean) {
@@ -113,6 +115,14 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(layoutResId = R.layout.fr
                 }
             }
         }
+    }
+
+    private fun speakTTS(txt: String) {
+        TTSManager.speak(text = txt)
+    }
+
+    private fun stopTTS() {
+        TTSManager.stopSpeak()
     }
 
     private fun startSTT() {

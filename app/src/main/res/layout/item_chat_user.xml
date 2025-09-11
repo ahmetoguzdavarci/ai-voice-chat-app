@@ -5,6 +5,16 @@
 
     <data>
 
+        <import type="android.view.View" />
+
+        <import type="android.content.Context" />
+
+        <import type="androidx.core.content.ContextCompat" />
+
+        <variable
+            name="mViewModel"
+            type="com.aod.aivoicechat.viewmodels.ChatViewModel" />
+
         <variable
             name="mAdapter"
             type="com.aod.aivoicechat.ui.home.AdapterChat" />

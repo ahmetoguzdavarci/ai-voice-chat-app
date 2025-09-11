@@ -7,6 +7,14 @@
 
         <import type="android.view.View" />
 
+        <import type="android.content.Context" />
+
+        <import type="androidx.core.content.ContextCompat" />
+
+        <variable
+            name="mViewModel"
+            type="com.aod.aivoicechat.viewmodels.ChatViewModel" />
+
         <variable
             name="mAdapter"
             type="com.aod.aivoicechat.ui.home.AdapterChat" />
@@ -29,6 +37,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
+        android:foreground="?attr/selectableItemBackground"
         android:paddingTop="4dp"
         android:paddingBottom="4dp"
         tools:background="@color/transparent">
@@ -67,7 +76,7 @@
             app:lottie_autoPlay="true"
             app:lottie_loop="true"
             app:lottie_rawRes="@raw/animation_typing"
-            tools:visibility="visible" />
+            tools:visibility="invisible" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
