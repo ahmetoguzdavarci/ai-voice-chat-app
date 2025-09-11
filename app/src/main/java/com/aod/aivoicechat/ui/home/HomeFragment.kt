@@ -43,7 +43,8 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(layoutResId = R.layout.fr
             homeBtnSettings.setOnClickListener {
                 TTSManager.stopSpeak()
                 STTManager.stopListening()
-                findNavController().goToFragment(R.id.settingsFragment)
+                //findNavController().goToFragment(R.id.settingsFragment)
+                findNavController().goToFragment(R.id.composeSettingsFragment)
             }
 
             btnMic.setOnClickListener {

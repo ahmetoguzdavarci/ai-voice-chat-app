@@ -10,6 +10,8 @@ Kotlin - Android Studio
 
 - Multi-language support: English, Turkish, French, German — UI strings and TTS locale update immediately after selection.
 
+- Settings in Jetpack Compose: Material 3 screen with TopAppBar and an exposed dropdown language picker (flag + title), state persisted via rememberSaveable, seamless back navigation.
+
 - Conversation feed: Welcome message on first run and continuous chat list with auto-scroll.
 
 - Permission UX: Microphone permission flow with settings deep-link and graceful fallbacks.
@@ -23,6 +25,8 @@ Kotlin - Android Studio
 
 - Language & Concurrency: Kotlin, Coroutines, Flow/StateFlow.
 
+- UI (Compose): Jetpack Compose (Material 3), Scaffold/TopAppBar, ExposedDropdownMenuBox, TextField with trailing flag icon, remember / rememberSaveable for state, ComposeView interop inside Fragment.
+
 - Architecture: MVVM, Repository pattern, AndroidX Navigation, Data Binding.
 
 - Speech: Android SpeechRecognizer (STT), TextToSpeech (TTS).
@@ -33,7 +37,7 @@ Kotlin - Android Studio
 
 - UI: Material Components, RecyclerView.
 
-- Build/Tooling: Gradle, Android Gradle Plugin.
+- Build/Tooling: Gradle, Android Gradle Plugin, Compose BOM, Kotlin Compose Compiler plugin (Kotlin 2.x).
 
 
 

@@ -17,4 +17,9 @@
         android:label="@string/settings"
         tools:layout="@layout/fragment_settings" />
 
+    <fragment
+        android:id="@+id/composeSettingsFragment"
+        android:name="com.aod.aivoicechat.ui.composesettings.ComposeSettingsFragment"
+        android:label="ComposeSettingsFragment" />
+
 </navigation>
